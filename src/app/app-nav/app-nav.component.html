@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav 
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" 
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    position="start" 
+    opened="false" 
+    class="sidenav">
+    <mat-toolbar color="primary" class="header">Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/employees">Employees</a>
+    </mat-nav-list>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/employees/add">Add Employees</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button class="hamburger mat-button" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon svgIcon="menu"></mat-icon>
+      </button>
+      <span>Employee Dashboard</span>
+    </mat-toolbar>
+    <div class="mat-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+    <mat-toolbar>
+      <p class="footer-text">2018 &copy; Employee Desk</p>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

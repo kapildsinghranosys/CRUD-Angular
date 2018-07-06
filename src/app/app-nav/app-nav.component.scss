@@ -1,0 +1,23 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+.mat-drawer-content{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .mat-sidenav-content{
+    flex: 1;
+    display: block;
+  }
+}
+.footer-text{
+  text-align: center;
+  font-size: 12px;
+  flex:1;
+  color:#a5a0a0;
+}

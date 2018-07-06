@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './variable';
+@import './mixins';
+@import './grid';
+html {
+    line-height: 1.15;
+    /* 1 */
+    -webkit-text-size-adjust: 100%;
+    /* 2 */
+}
+
+body {
+    margin: 0;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+table {
+    width: 100%;
+}
+.table-responsive{
+    overflow-x:auto;
+    display: block;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 350px;
+    max-width: 100%;
+}
+
+.w-sm-120 {
+    width: 120px;
+    @media screen and (max-width: $grid-breakpoints-md) {
+      width:100%;
+    }
+}
+
+.list-lable {
+    font-size: 0.8rem;
+    color: #666;
+}
+.float-right{
+    float: right;    
+}
+.float-sm-right{
+    float: right;
+    @media screen and (max-width: $grid-breakpoints-sm) {
+        float:none;
+      }
+}
+.text-right{
+    text-align:right;
+}
+.w-100{
+    width:100%;
+}
+.hide{
+    display: none!important;
+}
+.show{
+    display: block!important;
+}
+.alert{
+    padding: 16px;
+    margin-bottom: 16px;
+    color:$white-color;
+    &-success{
+        background-color:$success-color;
+    }
+    &-danger{
+        background-color:$danger-color;
+    }
+    &-info{
+        background-color:$info-color;
+    }
+    &-warning{
+        background-color:$warning-color;
+    }
+}
+@media(max-width:650px){
+    .view-card{
+        .mat-divider{
+            margin:5px 0;
+        }
+        .mat-list-item-content{
+            flex-wrap: wrap;
+            .list-value{
+                width: 100%;
+            }
+        } 
+    }     
+}
+

@@ -1,0 +1,118 @@
+<div class="px-50 py-40 px-sm-15 py-sm-25">
+  <div class="alert alert-success mat-elevation-z2 mat-elevation-z8" [class.hide]="!success">
+    Employee information has been updated successfully
+  </div>
+
+  <mat-card class="view-card emp-add-card">
+    <div class="container-fluid">
+      <form [formGroup]="empAddForm" (ngSubmit)="submitHandler()">
+
+        <div class="row">
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Name" formControlName="name">
+              <mat-error *ngIf="name.invalid ">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="email.touched && email.invalid">
+                Your email does not right
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Password" formControlName="password">
+              <mat-error *ngIf="password.invalid">
+                Password is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <!-- <input matInput placeholder="Date of Birth" formControlName="dob"> -->
+              <input matInput 
+              [matDatepicker]="pickerDOB" 
+              formControlName="dob" 
+              placeholder="Date of Birth" 
+              [max]="maxDate"
+              (dateChange)="ageCount($event)">
+              <mat-datepicker-toggle matSuffix [for]="pickerDOB"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerDOB></mat-datepicker>
+
+              <mat-error *ngIf="dob.invalid">
+                Date of Birth is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Age" formControlName="age">
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Designation" formControlName="designation">
+                <mat-option *ngFor="let desg of designationList" [value]="desg.id">
+                  {{desg.designation_name}}
+                </mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="designation.invalid">
+                Designation is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Department" formControlName="department">
+                <mat-option *ngFor="let dept of departmentList" [value]="dept.id">
+                  {{dept.department_name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="department.invalid">
+                Department is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <input matInput [matDatepicker]="pickerDOJ" formControlName="doj" placeholder="Date of Join" [max]="maxDate">
+              <mat-datepicker-toggle matSuffix [for]="pickerDOJ"></mat-datepicker-toggle>
+              <mat-datepicker touchUi #pickerDOJ></mat-datepicker>
+              <mat-error *ngIf="doj.invalid">
+                Date of Join is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25">
+            <mat-form-field class="w-100">
+              <mat-select placeholder="Role" formControlName="role">
+                <mat-option *ngFor="let r of roleList" [value]="r.id">
+                  {{r.role | titlecase}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="role.invalid">
+                Accessability role is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4 mb-25" hidden>
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Profile Photo" formControlName="img">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button mat-raised-button color="primary" type="submit" [disabled]="empAddForm.invalid">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </mat-card>
+</div>

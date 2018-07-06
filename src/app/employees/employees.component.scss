@@ -1,0 +1,13 @@
+.employees-list tr{
+    cursor: pointer;
+}
+.list-thumb{
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: block;
+    img{
+        max-width: 100%;
+    }
+}

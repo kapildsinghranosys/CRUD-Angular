@@ -1,0 +1,28 @@
+.img-controls{
+    position: absolute;
+    top: 0;
+    left: 15px;
+    width: calc(100% - 30px);
+    text-align: right;
+    height: 100%;
+    input[type=file]{
+        width: 100%;
+        left: 0;
+        height: 100%;
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        &:active,
+        &:focus{
+            border: 0;
+            box-shadow: 0;
+        }        
+    }
+    .mat-mini-fab{
+        margin-right: 10px;
+        position: absolute;
+        z-index: 2;
+        bottom: 10px;
+        right: 10px;
+    }
+}

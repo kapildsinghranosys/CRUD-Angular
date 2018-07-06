@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col pt-15">
+      <!-- <div class="list-lable">Profile Image</div> -->
+      <form #imageForm=ngForm (ngSubmit)="OnSubmit(Image)">
+        <div class="row">
+          <div class="col">
+            <div class="img-container">
+              <img [src]="imageUrl" style="max-width:250px;width:100%">
+            </div>
+            <div class="img-controls">
+              <input matTooltip="Change image" type="file" #Image  accept="image/*" (change)="handleFileInput($event.target.files)">
+              <button matTooltip="Save" mat-mini-fab type="submit" color="primary" [disabled]="Image.value=='' || !imageForm.valid">
+                <mat-icon>save</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

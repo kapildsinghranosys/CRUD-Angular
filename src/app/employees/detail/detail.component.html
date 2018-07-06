@@ -1,0 +1,81 @@
+<div class="px-50 py-40 px-sm-15 py-sm-25">
+  <div class="container-fluid mb-10" *ngIf="employee">
+    <div class="row">
+      <div class="col-12 text-right">
+          <a mat-button class="mr-5" routerLink="/employees">Back</a>
+          <a mat-button mat-raised-button class="mr-5" routerLink="/employees/update/{{employee.id}}">Edit</a>
+          <a mat-raised-button color="warn" (click)="confirmDelete()">Delete</a>
+      </div>
+    </div>
+  </div>
+
+
+  <mat-card class="view-card emp-view-card" >
+    <div class="container-fluid" *ngIf="employee">
+      <div class="row">
+        <div class="col-12 col-sm-3 text-center">
+            <app-upload-image [id]="employee.id" [img]="employee.img"></app-upload-image>
+        </div>
+        <div class="col-12 col-sm-9 text-center">
+          <mat-list>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Name</span>
+              <span class="list-value">{{employee.name | uppercase}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Emp. ID</span>
+              <span class="list-value">{{employee.id}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Email</span>
+              <span class="list-value">{{employee.email}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">designation</span>
+              <span class="list-value">{{designation}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Department</span>
+              <span class="list-value">{{department}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="w-sm-120 list-lable">Accessability</span>
+                <span class="list-value">{{role | titlecase}}</span>
+              </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <mat-list>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Date of Birth</span>
+              <span class="list-value">{{employee.dob}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Age</span>
+              <span class="list-value">{{employee.age}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </div>
+        <div class="col-12 col-sm-6">
+          <mat-list>
+            <mat-list-item>
+              <span class="w-sm-120 list-lable">Date of Join</span>
+              <span class="list-value">{{employee.doj}}</span>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+ 
+</div>
