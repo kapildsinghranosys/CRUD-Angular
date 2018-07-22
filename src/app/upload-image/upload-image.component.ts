@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { AppConfig } from '../app.config';
+//import { AppConfig } from '../app.config';
+import { environment } from "../../environments/environment";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-upload-image",
@@ -11,11 +13,11 @@ export class UploadImageComponent implements OnInit {
   //@Input('id') parentRecordId: number;
   @Input() id: string;
   @Input() img: string;
-  private _url: string = AppConfig.apiEndpoint;
+  private _url: string = environment.apiUrl;
   imageUrl: string = "../assets/img/default-image.png";
   fileToUpload: File = null;
   test:any;
-  constructor(private http:HttpClient) {}
+  constructor(private http:HttpClient, private _authService: AuthService) {}
 
   ngOnInit() {
     if(this.img){
@@ -36,7 +38,7 @@ export class UploadImageComponent implements OnInit {
 
   OnSubmit(Image) {
     
-    const endpoint = 'http://192.168.18.116/employee-desk/api/employee/uploadUserImage.php';
+    const endpoint = this._authService.apiUrl()+'employee/uploadUserImage.php';
     const formData: FormData = new FormData();
     formData.append('img', this.fileToUpload, this.fileToUpload.name);
     formData.append('id', this.id);
@@ -49,7 +51,7 @@ export class UploadImageComponent implements OnInit {
   processResult(data) {
     //console.log(data.success);
     if(data.success == 1){
-      console.log('shi h '); 
+      console.log('Image uploaded successfully'); 
     }   
   }
 }

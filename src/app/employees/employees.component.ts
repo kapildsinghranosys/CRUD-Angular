@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 
 import { Employee } from './employee';
 import { DataService } from './../services/data.service';
-import { AppConfig } from '../app.config';
+//import { AppConfig } from '../app.config';
+import { environment } from '../../environments/environment';
 
 @Component({
     selector: 'app-emp-root',
@@ -15,7 +16,7 @@ import { AppConfig } from '../app.config';
 export class EmployeesComponent implements OnInit  {
     selectedEmp: Employee;
     employees:Employee[] ;
-    private _url: string = AppConfig.apiEndpoint;
+    private _url: string = environment.apiUrl;
 
     
     //displayedColumns = ['id','img', 'name','email','age','dob','password','doj','department','designation','role'];  
@@ -37,16 +38,17 @@ export class EmployeesComponent implements OnInit  {
   
     ngOnInit() {
       this._dataservice.readEmployeeList()
-      .subscribe(data=>{
-        this.processResult(data);
-      });
+      .subscribe(
+        (data)=> this.processResult(data),
+        (err)=> console.log(err)
+      );
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
     }
+    
     processResult(data) {
       this.employees = data;
       this.dataSource.data = this.employees;
-
     }
   
     onSelect(emp: Employee): void {
@@ -57,6 +59,5 @@ export class EmployeesComponent implements OnInit  {
       //console.log('selected list: ', this.selectedEmp);
       this.router.navigate(["/employees/view/"+this.selectedEmp.id]);
       
-    }  
-    
+    }      
   }

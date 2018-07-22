@@ -1,14 +1,16 @@
 import { Injectable } from "@angular/core";
-import { AppConfig } from "../app.config";
+//import { AppConfig } from "../app.config";
 import { HttpClient } from "@angular/common/http";
 import { Employee } from "../employees/employee";
 import { Observable } from "rxjs";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class DataService {
-  private _url: string = AppConfig.apiEndpoint;
+  //private _url: string = AppConfig.apiEndpoint;
+  private _url: string = environment.apiUrl;
   private departmentList:Observable<any>;
   private designationList:Observable<any>;
   private roleList:Observable<any>;

@@ -1,6 +1,10 @@
 .sidenav-container {
   height: 100%;
 }
+.auth-page{
+  background: #fff url(../../assets/img/login.jpg) no-repeat center center;
+  background-size: cover;
+}
 
 .sidenav {
   width: 200px;
@@ -20,4 +24,10 @@
   font-size: 12px;
   flex:1;
   color:#a5a0a0;
+}
+.invis{
+  visibility: hidden;
+  z-index: -999999;
+  position: absolute;
+  left: -99999px;
 }

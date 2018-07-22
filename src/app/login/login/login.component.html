@@ -1,0 +1,56 @@
+<div class="container auth-card">
+  <div class="row ustify-content-center">
+    <div class="col">
+      <div class="d-flex justify-content-center align-items-center h-100-vh">
+        <mat-card class="login-card">
+          <form [formGroup]="loginForm" (ngSubmit)="submitHandler()">
+            <div class="container-fluid auth-form">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <img src="../../../assets/img/dummy-logo.png" alt="Logo">
+                  <div class="mb-10"><mat-hint>Please fill the form then click on Login button</mat-hint></div>
+                </div>
+                <div class="col-12 mb-15 mt-5">
+                  <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="email">
+                    <mat-error *ngIf="email.invalid ">
+                      Please enter a valid email
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-12 mb-15 mt-5">
+                  <mat-form-field>
+                    <input matInput type="password" placeholder="Password" formControlName="password">
+                    <mat-error *ngIf="password.invalid ">
+                      Please enter correct password
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <!-- <div class="col-12 mb-15 mt-5">
+                  <mat-checkbox color="primary" 
+                  class="" 
+                  formControlName="keepLogin"
+                  >Remember Password  </mat-checkbox>                  
+                </div> -->
+                <div class="col-12 mb-10 mt-15">
+                    <button mat-raised-button 
+                    class="w-100" 
+                    color="primary"
+                    type="submit"
+                    [disabled]="loginForm.invalid">Login</button>
+                </div>
+                <div class="col-12 mb-15 mt-5 text-center">
+                 <a mat-button
+                 (click)="forgetPassword()"
+                  >
+                    Forget Password
+                  </a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

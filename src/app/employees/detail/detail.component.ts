@@ -28,15 +28,15 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get("id");
-    this._dataServices.getEmployee(id).subscribe(data => {
-      this.processResult(data);
-    });
-
-    
+    this._dataServices.getEmployee(id)
+    .subscribe(
+      (data) => this.processResult(data),
+      (err)=> console.log(err)
+    );    
   }
 
   confirmDelete() {
-    console.log("delete");
+    console.log("Pop-up of confirmation delete");
     let dialogRef = this.dialog.open(DialogConfirmComponent, {
       width: "300px",
       data: `Are you sure to delete ${this.employee.name.toUpperCase()}'s record`
@@ -50,9 +50,11 @@ export class DetailComponent implements OnInit {
 
   deleteEmployee(status) {
     if (status) {
-      this._dataServices.deleteEmployee(this.employee.id).subscribe(data => {
-        this.processResultDel(data);
-      });
+      this._dataServices.deleteEmployee(this.employee.id)
+      .subscribe(
+        (data) => this.processResultDel(data),
+        (err) => console.log(err)
+      );
     }
   }
 
@@ -60,17 +62,26 @@ export class DetailComponent implements OnInit {
     //console.log(data);
     if (Object.keys(data).length > 0) {
       this.employee = data;
-      this._dataServices.readDesignationList().subscribe(data => {
-        this.processDesignation(data);
-      });
-      this._dataServices.readDepartmentList().subscribe(data => {
-        this.processDepartment(data);
-      });
-      this._dataServices.readRoleList().subscribe(data => {
-        this.processRole(data);
-      });
+      this._dataServices.readDesignationList()
+      .subscribe(
+        (data) => this.processDesignation(data),
+        (err) => console.log(err)
+      );
+
+      this._dataServices.readDepartmentList()
+      .subscribe(
+        (data) => this.processDepartment(data),
+        (err) => console.log(err)
+      );
+        
+      this._dataServices.readRoleList()
+      .subscribe(
+        (data) => this.processRole(data),
+        (err) => console.log(err)
+      );
+
     } else {
-      console.log("empty");
+      console.log("employee table is empty");
     }
   }
   processResultDel(data) {

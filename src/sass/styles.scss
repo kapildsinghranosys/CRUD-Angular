@@ -19,11 +19,21 @@ body {
 table {
     width: 100%;
 }
+
 .table-responsive{
     overflow-x:auto;
     display: block;
 }
-
+.ml-auto{
+    margin-left:auto!important;
+}
+.mr-auto{
+    margin-right:auto!important;
+}
+.mx-auto{
+    margin-left:auto!important;
+    margin-right:auto!important;
+}
 .mat-form-field {
     font-size: 14px;
     width: 350px;
@@ -53,8 +63,14 @@ table {
 .text-right{
     text-align:right;
 }
+.text-center{
+    text-align:center;
+}
 .w-100{
     width:100%;
+}
+.h-100-vh{
+    height: 100vh;
 }
 .hide{
     display: none!important;

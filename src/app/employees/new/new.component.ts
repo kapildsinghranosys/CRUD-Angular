@@ -32,15 +32,21 @@ export class NewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._dataServices.readDesignationList().subscribe(data => {
-      this.processDesignation(data);
-    });
-    this._dataServices.readDepartmentList().subscribe(data => {
-      this.processDepartment(data);
-    });
-    this._dataServices.readRoleList().subscribe(data => {
-      this.processRole(data);
-    });
+    this._dataServices.readDesignationList()
+    .subscribe(
+      (data) => this.processDesignation(data),
+      (err) => console.log(err)
+    );
+    this._dataServices.readDepartmentList()
+    .subscribe(
+      (data) => this.processDepartment(data),
+      (err) => console.log(err)
+    );
+    this._dataServices.readRoleList()
+    .subscribe(
+      (data) => this.processRole(data),
+      (err) => console.log(err)
+    );
 
     this.empAddForm = this.fb.group({
       name: ["", [Validators.required]],
@@ -81,19 +87,20 @@ export class NewComponent implements OnInit {
     return this.empAddForm.get("role");
   }
 
-  async submitHandler() {
+  submitHandler() {
     this.loading = true;
 
     const formValue = this.empAddForm.value;
     //console.log(formValue);
 
     try {
-      this._dataServices.addEmployee(formValue).subscribe(data => {
-        this.addResult(data);
-      });
+      this._dataServices.addEmployee(formValue)
+      .subscribe(
+        (data) => this.addResult(data),
+        (err) => console.log(err)
+      );
     } catch (e) {
-      console.log("error");
-      console.log(e);
+      console.log("error: "+e);
     }
 
     this.loading = false;

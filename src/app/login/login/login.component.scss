@@ -1,0 +1,13 @@
+
+.auth-card {
+    .login-card {
+        width: 400px;
+        max-width: 100%;
+        background: rgba(255,255,255,.95);
+        padding: 8px;
+        .auth-form{
+            padding: 16px;
+            border:1px solid rgba($color: #ccc, $alpha: 0.5)
+        }
+    }
+}

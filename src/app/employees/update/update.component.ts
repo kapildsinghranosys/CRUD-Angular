@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Employee } from "../employee";
 import { DataService } from "../../services/data.service";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { tap, first } from 'rxjs/operators';
 
 @Component({
@@ -24,7 +24,8 @@ export class UpdateComponent implements OnInit {
   constructor(
     private _dataServices: DataService, 
     private route:ActivatedRoute, 
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private redirectRoute:Router
   ) {}
 
   ngOnInit() {
@@ -77,7 +78,7 @@ export class UpdateComponent implements OnInit {
         ]]
       });
     } else {
-      console.log("empty");
+      this.redirectRoute.navigate(['/employees']);
     }
   }
 
@@ -103,7 +104,7 @@ export class UpdateComponent implements OnInit {
     return this.empUpdateForm.get('role');
   }
 
-  async submitHandler(){
+  submitHandler(){
     
     this.loading = true;
 
@@ -126,6 +127,9 @@ export class UpdateComponent implements OnInit {
   updateResult(data) {
     if(data.success === 1){
       this.success = true;
+      setTimeout(() => {
+        this.success = false;
+      }, 5000);
     }    
   }
   processDesignation(data) {

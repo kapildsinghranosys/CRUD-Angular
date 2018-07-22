@@ -1,5 +1,7 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav 
+<mat-sidenav-container class="sidenav-container" [class.auth-page]="!isLoggedIn">
+  <mat-sidenav 
+  [class.invis]="!isLoggedIn"
+    #sidenav 
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" 
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
     position="start" 
@@ -14,16 +16,26 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar 
+    [class.invis]="!isLoggedIn"
+    color="primary">
       <button class="hamburger mat-button" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
         <mat-icon svgIcon="menu"></mat-icon>
       </button>
       <span>Employee Dashboard</span>
+      <a class="ml-auto" 
+         mat-button
+         (click)="onLogout()">
+         <span class="mat-button-wrapper">
+          <mat-icon>exit_to_app</mat-icon> Logout
+         </span>
+            
+      </a>
     </mat-toolbar>
     <div class="mat-sidenav-content">
       <router-outlet></router-outlet>
     </div>
-    <mat-toolbar>
+    <mat-toolbar *ngIf="isLoggedIn">
       <p class="footer-text">2018 &copy; Employee Desk</p>
     </mat-toolbar>
   </mat-sidenav-content>
