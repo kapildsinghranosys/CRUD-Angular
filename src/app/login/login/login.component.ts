@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   
-  private loginForm: FormGroup;
+  loginForm: FormGroup;
   private result: JSON;
   private loading:boolean = false;
+  isError:boolean = false;
   redirectUrl: string;
 
   constructor(private fb: FormBuilder,
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
     }
     if(resp.success == 0){
       console.log('error');
+      this.isError = true;
     }    
   }
 

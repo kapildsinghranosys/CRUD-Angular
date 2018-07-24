@@ -17,6 +17,7 @@ export class DetailComponent implements OnInit {
   designation: any;
   department: any;
   role: any;
+  showSpinner: boolean;
     
 
   constructor(
@@ -27,12 +28,56 @@ export class DetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.showSpinnerfn();
     const id = +this.route.snapshot.paramMap.get("id");
     this._dataServices.getEmployee(id)
     .subscribe(
       (data) => this.processResult(data),
       (err)=> console.log(err)
     );    
+  }
+
+  
+
+  processResult(data) {
+    //console.log(data);
+    if (Object.keys(data).length > 0) {
+      this.employee = data;
+      this.hideSpinnerfn();
+      this._dataServices.readDesignationList()
+      .subscribe(
+        (data) => this.processDesignation(data),
+        (err) => console.log(err)
+      );
+
+      this._dataServices.readDepartmentList()
+      .subscribe(
+        (data) => this.processDepartment(data),
+        (err) => console.log(err)
+      );
+        
+      this._dataServices.readRoleList()
+      .subscribe(
+        (data) => this.processRole(data),
+        (err) => console.log(err)
+      );
+
+    } else {
+      console.log("employee table is empty");
+    }
+  }
+    
+  processDesignation(data) {
+    this.designation = data.find(item => item.id === this.employee.designation);
+    this.designation = this.designation.designation_name;
+  }
+  processDepartment(data) {
+    this.department = data.find(item => item.id === this.employee.department);
+    this.department = this.department.department_name;
+  }
+  processRole(data) {
+    this.role = data.find(item => item.id === this.employee.role);    
+    this.role = this.role.role;
   }
 
   confirmDelete() {
@@ -57,33 +102,6 @@ export class DetailComponent implements OnInit {
       );
     }
   }
-
-  processResult(data) {
-    //console.log(data);
-    if (Object.keys(data).length > 0) {
-      this.employee = data;
-      this._dataServices.readDesignationList()
-      .subscribe(
-        (data) => this.processDesignation(data),
-        (err) => console.log(err)
-      );
-
-      this._dataServices.readDepartmentList()
-      .subscribe(
-        (data) => this.processDepartment(data),
-        (err) => console.log(err)
-      );
-        
-      this._dataServices.readRoleList()
-      .subscribe(
-        (data) => this.processRole(data),
-        (err) => console.log(err)
-      );
-
-    } else {
-      console.log("employee table is empty");
-    }
-  }
   processResultDel(data) {
     console.log(data);
     if (Object.keys(data).length > 0) {
@@ -91,18 +109,14 @@ export class DetailComponent implements OnInit {
     } else {
       console.log("empty");
     }
-  }  
-  processDesignation(data) {
-    this.designation = data.find(item => item.id === this.employee.designation);
-    this.designation = this.designation.designation_name;
   }
-  processDepartment(data) {
-    this.department = data.find(item => item.id === this.employee.department);
-    this.department = this.department.department_name;
+
+  showSpinnerfn(){
+    this.showSpinner = true;
   }
-  processRole(data) {
-    this.role = data.find(item => item.id === this.employee.role);    
-    this.role = this.role.role;
+
+  hideSpinnerfn(){
+    this.showSpinner = false;
   }
   
 }

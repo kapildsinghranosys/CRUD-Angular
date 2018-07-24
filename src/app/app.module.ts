@@ -48,12 +48,9 @@ import { AuthGuard } from './auth/auth.guard';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [DataService, AuthService, AuthGuard],
+  providers: [
+    DataService, 
+    AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
-  constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer){
-    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('/assets/mdi.svg'));
-  }
-
-}
+export class AppModule { }

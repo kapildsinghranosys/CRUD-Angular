@@ -14,9 +14,13 @@ export class UploadImageComponent implements OnInit {
   @Input() id: string;
   @Input() img: string;
   private _url: string = environment.apiUrl;
-  imageUrl: string = "../assets/img/default-image.png";
+  imageUrl: string = "./assets/img/default-image.png";
   fileToUpload: File = null;
   test:any;
+  success: boolean = false;
+  showbutton: boolean = false;
+
+
   constructor(private http:HttpClient, private _authService: AuthService) {}
 
   ngOnInit() {
@@ -32,8 +36,9 @@ export class UploadImageComponent implements OnInit {
     var reader = new FileReader();
     reader.onload = (event: any) => {
       this.imageUrl = event.target.result;
+      this.showbutton = true;
     };
-    reader.readAsDataURL(this.fileToUpload);
+    reader.readAsDataURL(this.fileToUpload);    
   }
 
   OnSubmit(Image) {
@@ -52,6 +57,11 @@ export class UploadImageComponent implements OnInit {
     //console.log(data.success);
     if(data.success == 1){
       console.log('Image uploaded successfully'); 
+      this.showbutton = false;
+      this.success = true;
+      setTimeout(() => {
+        this.success = false;
+      }, 5000);
     }   
   }
 }

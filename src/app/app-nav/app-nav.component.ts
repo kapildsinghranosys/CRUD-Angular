@@ -15,7 +15,7 @@ import { AuthService } from "../services/auth.service";
 })
 export class AppNavComponent {
 
-  private isLoggedIn:boolean;
+  isLoggedIn:boolean;
   private subscription: Subscription;
 
   constructor(private breakpointObserver: BreakpointObserver,

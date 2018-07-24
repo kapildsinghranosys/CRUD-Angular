@@ -124,6 +124,6 @@ export class NewComponent implements OnInit {
   ageCount(event):void {
     var timeDiff = Math.abs(Date.now() - event.value);
     this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365);
-    this.empAddForm.controls['age'].setValue(this.age+' years');    
+    this.empAddForm.controls['age'].setValue(this.age);    
   }
 }

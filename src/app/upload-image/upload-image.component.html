@@ -10,8 +10,13 @@
             </div>
             <div class="img-controls">
               <input matTooltip="Change image" type="file" #Image  accept="image/*" (change)="handleFileInput($event.target.files)">
-              <button matTooltip="Save" mat-mini-fab type="submit" color="primary" [disabled]="Image.value=='' || !imageForm.valid">
+              <button matTooltip="Save" mat-mini-fab type="submit" color="primary" 
+              *ngIf="showbutton"
+              [disabled]="Image.value=='' || !imageForm.valid">
                 <mat-icon>save</mat-icon>
+              </button>
+              <button matTooltip="Saved" mat-mini-fab class="bggreen" *ngIf="success" >
+                  <mat-icon>check</mat-icon>
               </button>
             </div>
           </div>

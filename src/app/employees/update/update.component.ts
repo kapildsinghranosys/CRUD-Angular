@@ -68,7 +68,7 @@ export class UpdateComponent implements OnInit {
         dob: [this.employee.dob, [
           Validators.required
         ]],
-        age: this.employee.age + ' Years',
+        age: this.employee.age,
         doj: [this.employee.doj, [
           Validators.required
         ]],
@@ -144,6 +144,6 @@ export class UpdateComponent implements OnInit {
   ageCount(event):void {
     var timeDiff = Math.abs(Date.now() - event.value);
     this.age = Math.floor(timeDiff / (1000 * 3600 * 24) / 365);
-    this.empUpdateForm.controls['age'].setValue(this.age+' years');    
+    this.empUpdateForm.controls['age'].setValue(this.age);    
   }
 }

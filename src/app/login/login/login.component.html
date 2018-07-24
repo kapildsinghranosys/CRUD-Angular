@@ -2,13 +2,18 @@
   <div class="row ustify-content-center">
     <div class="col">
       <div class="d-flex justify-content-center align-items-center h-100-vh">
-        <mat-card class="login-card">
+        <mat-card class="login-card">          
           <form [formGroup]="loginForm" (ngSubmit)="submitHandler()">
             <div class="container-fluid auth-form">
               <div class="row">
                 <div class="col-12 text-center">
-                  <img src="../../../assets/img/dummy-logo.png" alt="Logo">
+                  <img src="./assets/img/dummy-logo.png" alt="Logo">
                   <div class="mb-10"><mat-hint>Please fill the form then click on Login button</mat-hint></div>
+                </div>
+                <div class="col-12">
+                    <div class="alert alert-danger mat-elevation-z2 mat-elevation-z8" [class.hide]="!isError">
+                        Please enter valid credentials.
+                    </div>
                 </div>
                 <div class="col-12 mb-15 mt-5">
                   <mat-form-field>

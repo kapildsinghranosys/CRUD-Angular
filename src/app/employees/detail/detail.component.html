@@ -11,7 +11,12 @@
 
 
   <mat-card class="view-card emp-view-card" >
-    <div class="container-fluid" *ngIf="employee">
+      <div class="col-12 text-center" *ngIf="showSpinner">
+          <div class="mat-spinner-wrapper">
+            <mat-spinner [diameter]="40"></mat-spinner>
+          </div>
+        </div>
+    <div class="container-fluid" *ngIf="employee && !showSpinner">
       <div class="row">
         <div class="col-12 col-sm-3 text-center">
             <app-upload-image [id]="employee.id" [img]="employee.img"></app-upload-image>

@@ -22,7 +22,9 @@ import {
   MatSortModule,
   MatPaginatorModule,
   MatTooltipModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 @NgModule({
@@ -48,7 +50,9 @@ import {
     MatSortModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   declarations: []
 })
